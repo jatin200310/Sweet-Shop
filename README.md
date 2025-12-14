@@ -306,3 +306,15 @@ For issues or questions, please review:
 - [ ] Multi-language support
 - [ ] Mobile app
 - [ ] Docker containerization
+
+## OUTPUT IMAGES
+<img width="808" height="356" alt="api running" src="https://github.com/user-attachments/assets/0105f924-4508-4900-a209-fa205d5a2064" />
+
+<img width="965" height="510" alt="API" src="https://github.com/user-attachments/assets/4af936ac-348e-4f78-9ee4-a28c17d9e838" />
+
+<img width="1333" height="597" alt="login page" src="https://github.com/user-attachments/assets/135f1bea-3db9-496b-86a2-083af4417b33" />
+
+
+<img width="1357" height="631" alt="registration" src="https://github.com/user-attachments/assets/e319fc08-bff4-454b-9299-15c83c517a90" />
+
+
