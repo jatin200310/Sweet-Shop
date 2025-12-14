@@ -1,0 +1,3 @@
+C:/Users/Jatin/Desktop/SweetShop/sweet-shop/backend/build/CMakeFiles/sweet_shop.dir
+C:/Users/Jatin/Desktop/SweetShop/sweet-shop/backend/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Jatin/Desktop/SweetShop/sweet-shop/backend/build/CMakeFiles/ZERO_CHECK.dir

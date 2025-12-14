@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Backend",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/backend && mkdir -p build && cd build && cmake .. && cmake --build .",
+            "group": "build",
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Run Backend",
+            "type": "shell",
+            "command": "${workspaceFolder}/backend/build/sweet_shop",
+            "dependsOn": ["Build Backend"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Setup Database",
+            "type": "shell",
+            "command": "mysql -u root -p < ${workspaceFolder}/database/schema.sql",
+            "problemMatcher": []
+        }
+    ]
+}

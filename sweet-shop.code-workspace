@@ -1,0 +1,119 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "name": "Sweet Shop"
+        }
+    ],
+    "settings": {
+        "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+        "C_Cpp.intelliSenseEngine": "Tag Parser",
+        "cmake.configureOnOpen": true,
+        "cmake.sourceDirectory": "${workspaceFolder}/backend",
+        "cmake.buildDirectory": "${workspaceFolder}/backend/build",
+        "files.associations": {
+            "*.sql": "sql",
+            "*.h": "cpp",
+            "*.cpp": "cpp"
+        },
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "[cpp]": {
+            "editor.defaultFormatter": "ms-vscode.cpptools",
+            "editor.formatOnSave": true
+        },
+        "[json]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[html]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[css]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "liveServer.settings.port": 5501,
+        "liveServer.settings.root": "/frontend/public",
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/build": true,
+            "**/.git": true
+        },
+        "files.exclude": {
+            "**/.DS_Store": true,
+            "**/*.o": true,
+            "**/*.a": true
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.defaultProfile.windows": "PowerShell"
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.cpptools",
+            "ms-vscode.cmake-tools",
+            "ms-vscode.cpptools-extension-pack",
+            "cweijan.vscode-mysql-client2",
+            "ritwickdey.liveserver",
+            "esbenp.prettier-vscode",
+            "ms-vscode-remote.remote-wsl",
+            "eamodio.gitlens",
+            "ms-python.python"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Debug Backend",
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${workspaceFolder}/backend/build/sweet_shop",
+                "args": [],
+                "stopAtEntry": false,
+                "cwd": "${workspaceFolder}",
+                "environment": [],
+                "externalConsole": false,
+                "MIMode": "gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ],
+                "preLaunchTask": "Build Backend"
+            }
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Build Backend",
+                "type": "shell",
+                "command": "bash",
+                "args": ["scripts/build.sh"],
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "problemMatcher": ["$gcc"]
+            },
+            {
+                "label": "Run Backend",
+                "type": "shell",
+                "command": "bash",
+                "args": ["scripts/run.sh"],
+                "group": {
+                    "kind": "test",
+                    "isDefault": true
+                }
+            },
+            {
+                "label": "Setup Database",
+                "type": "shell",
+                "command": "bash",
+                "args": ["scripts/setup_database.sh"]
+            }
+        ]
+    }
+}

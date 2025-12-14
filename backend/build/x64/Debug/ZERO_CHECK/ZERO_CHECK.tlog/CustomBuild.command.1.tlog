@@ -1,0 +1,10 @@
+^C:\USERS\JATIN\DESKTOP\SWEETSHOP\SWEET-SHOP\BACKEND\BUILD\CMAKEFILES\F70FC8D9437EA389B0E76037E98EEB9E\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Jatin/Desktop/SweetShop/sweet-shop/backend -BC:/Users/Jatin/Desktop/SweetShop/sweet-shop/backend/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Jatin/Desktop/SweetShop/sweet-shop/backend/build/sweet_shop_backend.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

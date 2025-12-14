@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Shop - Manage Your Inventory</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Header -->
+        <header class="navbar">
+            <div class="navbar-brand">
+                <i class="fas fa-candy-cane"></i>
+                <span>Sweet Shop Manager</span>
+            </div>
+            <div class="navbar-menu">
+                <div id="authSection" class="auth-section">
+                    <button id="loginBtn" class="btn btn-primary" onclick="showLoginForm()">Login</button>
+                    <button id="registerBtn" class="btn btn-secondary" onclick="showRegisterForm()">Register</button>
+                </div>
+                <div id="userSection" class="user-section" style="display: none;">
+                    <span id="userGreeting" class="user-greeting"></span>
+                    <button id="adminBtn" class="btn btn-info" onclick="toggleAdminPanel()" style="display: none;">Admin</button>
+                    <button id="logoutBtn" class="btn btn-danger" onclick="performLogout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Auth Forms Section -->
+            <div id="authFormsContainer" class="auth-forms-container">
+                <!-- Login Form -->
+                <div id="loginFormDiv" class="auth-form-box" style="display: none;">
+                    <h2>Login to Sweet Shop</h2>
+                    <form onsubmit="performLogin(event)">
+                        <div class="form-group">
+                            <label for="loginUsername">Username:</label>
+                            <input type="text" id="loginUsername" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password:</label>
+                            <input type="password" id="loginPassword" class="form-input" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                        <p class="toggle-text">No account? <a href="#" onclick="showRegisterForm(); return false;">Register here</a></p>
+                    </form>
+                    <div id="loginError" class="error-message"></div>
+                </div>
+
+                <!-- Register Form -->
+                <div id="registerFormDiv" class="auth-form-box" style="display: none;">
+                    <h2>Create New Account</h2>
+                    <form onsubmit="performRegister(event)">
+                        <div class="form-group">
+                            <label for="registerUsername">Username:</label>
+                            <input type="text" id="registerUsername" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email:</label>
+                            <input type="email" id="registerEmail" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password:</label>
+                            <input type="password" id="registerPassword" class="form-input" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                        <p class="toggle-text">Already have account? <a href="#" onclick="showLoginForm(); return false;">Login here</a></p>
+                    </form>
+                    <div id="registerError" class="error-message"></div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section (shown after login) -->
+            <div id="dashboardContainer" class="dashboard-container" style="display: none;">
+                <!-- Search & Filter Bar -->
+                <div class="search-filter-bar">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search sweets by name..." onkeyup="filterSweets()">
+                    <select id="categorySelect" class="filter-select" onchange="filterSweets()">
+                        <option value="">All Categories</option>
+                        <option value="Chocolate">Chocolate</option>
+                        <option value="Gummies">Gummies</option>
+                        <option value="Hard Candy">Hard Candy</option>
+                        <option value="Caramel">Caramel</option>
+                        <option value="Taffy">Taffy</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+                </div>
+
+                <!-- Sweets Grid -->
+                <div class="sweets-container">
+                    <div id="sweetsGrid" class="sweets-grid">
+                        <!-- Sweets cards will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Panel (visible only to admins) -->
+            <div id="adminPanel" class="admin-panel" style="display: none;">
+                <h2>Admin Panel - Manage Inventory</h2>
+                <form onsubmit="addNewSweet(event)" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sweetName">Sweet Name:</label>
+                            <input type="text" id="sweetName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sweetCategory">Category:</label>
+                            <select id="sweetCategory" class="form-input" required>
+                                <option value="">Select Category</option>
+                                <option value="Chocolate">Chocolate</option>
+                                <option value="Gummies">Gummies</option>
+                                <option value="Hard Candy">Hard Candy</option>
+                                <option value="Caramel">Caramel</option>
+                                <option value="Taffy">Taffy</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sweetDescription">Description:</label>
+                            <textarea id="sweetDescription" class="form-input" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sweetPrice">Price ($):</label>
+                            <input type="number" id="sweetPrice" class="form-input" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sweetQuantity">Quantity:</label>
+                            <input type="number" id="sweetQuantity" class="form-input" min="0" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add New Sweet</button>
+                </form>
+            </div>
+        </main>
+
+        <!-- Toast Notification -->
+        <div id="toastNotification" class="toast-notification"></div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="../src/api.js"></script>
+    <script src="../src/script.js"></script>
+</body>
+</html>
